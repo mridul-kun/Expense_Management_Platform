@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XpFlow — Ledger for your money</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="mobile-topbar">
+        <div class="mobile-topbar-brand">
+            <svg class="brand-mark" width="28" height="28" viewBox="0 0 34 34" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="32" height="32" rx="8" fill="#3E2B1F" />
+                <path d="M9 22V12.5L17 8L25 12.5V22L17 26L9 22Z" stroke="#E8D9C0" stroke-width="1.6"
+                    stroke-linejoin="round" />
+                <path d="M9 12.5L17 17L25 12.5" stroke="#E8D9C0" stroke-width="1.6" stroke-linejoin="round" />
+                <path d="M17 17V26" stroke="#E8D9C0" stroke-width="1.6" />
+            </svg>
+            <span class="mobile-topbar-name">XpFlow</span>
+        </div>
+        <button class="burger-btn" id="mobileMenuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" hidden>
+        <div class="mobile-menu-head">
+            <div class="mobile-topbar-brand">
+                <svg class="brand-mark" width="28" height="28" viewBox="0 0 34 34" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="32" height="32" rx="8" fill="#3E2B1F" />
+                    <path d="M9 22V12.5L17 8L25 12.5V22L17 26L9 22Z" stroke="#E8D9C0" stroke-width="1.6"
+                        stroke-linejoin="round" />
+                    <path d="M9 12.5L17 17L25 12.5" stroke="#E8D9C0" stroke-width="1.6" stroke-linejoin="round" />
+                    <path d="M17 17V26" stroke="#E8D9C0" stroke-width="1.6" />
+                </svg>
+                <span class="mobile-topbar-name">XpFlow</span>
+            </div>
+            <button class="icon-btn mobile-menu-close" id="mobileMenuClose" type="button"
+                aria-label="Close menu">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+            <button class="mobile-nav-item is-active" data-view="dashboard" type="button">
+                <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M3 10.5L10 4l7 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M5 9v7h10V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Dashboard</span>
+            </button>
+            <button class="mobile-nav-item" data-view="accounts" type="button">
+                <svg viewBox="0 0 20 20" fill="none">
+                    <rect x="2.5" y="5" width="15" height="10.5" rx="2" stroke="currentColor" stroke-width="1.6" />
+                    <path d="M2.5 8.5H17.5" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+                <span>Accounts</span>
+            </button>
+            <button class="mobile-nav-item" data-view="transactions" type="button">
+                <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M4 4h9l3 3v9H4V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                    <path d="M7 9h6M7 12h6M7 15h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+                <span>Transactions</span>
+            </button>
+            <button class="mobile-nav-item" data-view="reports" type="button">
+                <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M4 16V9M9.5 16V4M15 16v-6" stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round" />
+                </svg>
+                <span>Reports</span>
+            </button>
+            <button class="mobile-nav-item" data-view="settings" type="button">
+                <svg viewBox="0 0 20 20" fill="none">
+                    <circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                    <path
+                        d="M10 2.8v2M10 15.2v2M17.2 10h-2M4.8 10h-2M15.1 4.9l-1.4 1.4M6.3 13.7l-1.4 1.4M15.1 15.1l-1.4-1.4M6.3 6.3L4.9 4.9"
+                        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+                <span>Settings</span>
+            </button>
+        </nav>
+
+        <div class="mobile-menu-foot">
+            <button class="account-login-card" id="mobileAccountLogin" type="button">
+                <div class="account-login-icon" id="mobileAccountIcon"><span>+</span></div>
+                <div class="account-login-info">
+                    <strong id="mobileAccountTitle">Login</strong>
+                    <p id="mobileAccountSubtitle">Paytm · PhonePe · GPay · more</p>
+                </div>
+                <span class="account-login-arrow">›</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="app">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand">
+                    <div class="brand-left">
+                        <svg class="brand-mark" width="34" height="34" viewBox="0 0 34 34" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="32" height="32" rx="8" fill="#3E2B1F" />
+                            <path d="M9 22V12.5L17 8L25 12.5V22L17 26L9 22Z" stroke="#E8D9C0" stroke-width="1.6"
+                                stroke-linejoin="round" />
+                            <path d="M9 12.5L17 17L25 12.5" stroke="#E8D9C0" stroke-width="1.6"
+                                stroke-linejoin="round" />
+                            <path d="M17 17V26" stroke="#E8D9C0" stroke-width="1.6" />
+                        </svg>
+                        <div class="brand-text">
+                            <span class="brand-name">XpFlow</span>
+                            <span class="brand-tag">ledger &amp; flow</span>
+                        </div>
+                    </div>
+
+                    <div class="custom-icon" id="sidebarToggle" title="Toggle Sidebar"></div>
+                </div>
+            </div>
+
+            <nav class="nav" aria-label="Main navigation">
+                <button class="nav-item is-active" data-view="dashboard" type="button">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M3 10.5L10 4l7 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M5 9v7h10V9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-view="accounts" type="button">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <rect x="2.5" y="5" width="15" height="10.5" rx="2" stroke="currentColor" stroke-width="1.6" />
+                        <path d="M2.5 8.5H17.5" stroke="currentColor" stroke-width="1.6" />
+                    </svg>
+                    <span>Accounts</span>
+                </button>
+                <button class="nav-item" data-view="transactions" type="button">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M4 4h9l3 3v9H4V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                        <path d="M7 9h6M7 12h6M7 15h3" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>Transactions</span>
+                </button>
+                <button class="nav-item" data-view="reports" type="button">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <path d="M4 16V9M9.5 16V4M15 16v-6" stroke="currentColor" stroke-width="1.6"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>Reports</span>
+                </button>
+                <button class="nav-item" data-view="settings" type="button">
+                    <svg viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                        <path
+                            d="M10 2.8v2M10 15.2v2M17.2 10h-2M4.8 10h-2M15.1 4.9l-1.4 1.4M6.3 13.7l-1.4 1.4M15.1 15.1l-1.4-1.4M6.3 6.3L4.9 4.9"
+                            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                    <span>Settings</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-foot">
+                <button class="account-login-card" id="sidebarAccountLogin" type="button">
+                    <div class="account-login-icon" id="sidebarAccountIcon">
+                        <span>+</span>
+                    </div>
+
+                    <div class="account-login-info">
+                        <strong id="sidebarAccountTitle">Login</strong>
+                        <p id="sidebarAccountSubtitle">
+                            Paytm · PhonePe · GPay · more
+                        </p>
+                    </div>
+                    <span class="account-login-arrow">›</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main">
+
+            <section class="view is-active" id="view-dashboard">
+                <header class="view-head">
+                    <div>
+                        <span class="eyebrow">Overview</span>
+                        <h1 id="greeting">Good day</h1>
+                        <p class="sub" id="todayLabel"></p>
+                    </div>
+                    <button class="btn btn-primary" data-open-modal="modal-transaction" data-tx-type="expense">
+                        <span>+ Add Entry</span>
+                    </button>
+                </header>
+
+                <div class="hero-card">
+                    <div class="hero-main">
+                        <span class="eyebrow eyebrow-light">Ledger Total</span>
+                        <div class="hero-amount">
+                            <span class="hero-currency" id="heroCurrency">₹</span><span id="heroBalance">0</span>
+                        </div>
+                        <p class="hero-caption" id="heroCaption">Across 0 accounts</p>
+                    </div>
+                    <div class="hero-stamp" id="heroStamp" aria-hidden="true">
+                        <svg viewBox="0 0 90 90">
+                            <circle cx="45" cy="45" r="40" fill="none" stroke="currentColor" stroke-width="2" /><text
+                                x="45" y="41" text-anchor="middle" font-size="10" letter-spacing="1"
+                                fill="currentColor">BALANCE</text><text x="45" y="55" text-anchor="middle" font-size="8"
+                                fill="currentColor" id="stampDate">—</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <span class="stat-label">Income · this month</span>
+                        <span class="stat-amount stat-positive" id="statIncome">₹0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Expenses · this month</span>
+                        <span class="stat-amount stat-negative" id="statExpense">₹0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Net saved · this month</span>
+                        <span class="stat-amount" id="statNet">₹0</span>
+                    </div>
+                </div>
+
+                <div class="grid-two">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Recent entries</h2>
+                            <button class="link-btn" data-goto-view="transactions">View all</button>
+                        </div>
+                        <ol class="ledger-list" id="recentList"></ol>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Spend Lens</h2>
+                            <span class="panel-note" id="categoryMonthLabel"></span>
+                        </div>
+                        <canvas id="categoryChart" width="420" height="240"></canvas>
+                        <ul class="legend" id="categoryLegend"></ul>
+                    </div>
+                </div>
+
+                <div class="panel accounts-strip-panel">
+                    <div class="panel-head">
+                        <h2>Your accounts</h2>
+                        <button class="link-btn" data-goto-view="accounts">Manage</button>
+                    </div>
+                    <div class="accounts-strip" id="accountsStrip"></div>
+                </div>
+            </section>
+
+            <section class="view" id="view-accounts">
+                <header class="view-head">
+                    <div>
+                        <span class="eyebrow">Accounts</span>
+                        <h1>Your accounts</h1>
+                        <p class="sub">Savings, current, cards, cash — every place your money lives.</p>
+                    </div>
+                    <button class="btn btn-primary" data-open-modal="modal-account" type="button">
+                        <span>+ Connect account</span>
+                    </button>
+                </header>
+
+                <div class="accounts-grid" id="accountsGrid">
+                </div>
+            </section>
+
+            <section class="view" id="view-transactions">
+                <header class="view-head">
+                    <div>
+                        <span class="eyebrow">Ledger</span>
+                        <h1>All transactions</h1>
+                        <p class="sub">Every entry, in order, exactly as it happened.</p>
+                    </div>
+                    <button class="btn btn-primary" data-open-modal="modal-transaction" data-tx-type="expense">
+                        <span>+ Add entry</span>
+                    </button>
+                </header>
+
+                <div class="filter-bar">
+                    <input type="search" id="filterSearch" placeholder="Search notes…" aria-label="Search transactions">
+                    <select id="filterAccount" aria-label="Filter by account">
+                        <option value="">All accounts</option>
+                    </select>
+                    <select id="filterCategory" aria-label="Filter by category">
+                        <option value="">All categories</option>
+                    </select>
+                    <select id="filterType" aria-label="Filter by type">
+                        <option value="">Income &amp; expense</option>
+                        <option value="income">Income only</option>
+                        <option value="expense">Expense only</option>
+                    </select>
+                    <button class="link-btn" id="resetFilters" type="button">Reset</button>
+                </div>
+
+                <div class="table-wrap panel">
+                    <table class="ledger-table">
+                        <thead>
+                            <tr>
+                                <th class="col-no">#</th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Account</th>
+                                <th>Category</th>
+                                <th class="col-amount">Amount</th>
+                                <th class="col-actions"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody"></tbody>
+                    </table>
+                    <p class="empty-row" id="txEmptyState" hidden>No entries match yet. Add one, or adjust your filters.
+                    </p>
+                </div>
+            </section>
+
+            <section class="view" id="view-reports">
+                <header class="view-head">
+                    <div>
+                        <span class="eyebrow">Insights</span>
+                        <h1>Reports</h1>
+                        <p class="sub">Where the money actually goes.</p>
+                    </div>
+                    <div class="month-switch">
+                        <button class="icon-btn" id="monthPrev" type="button" aria-label="Previous month">‹</button>
+                        <span id="monthLabel">—</span>
+                        <button class="icon-btn" id="monthNext" type="button" aria-label="Next month">›</button>
+                    </div>
+                </header>
+
+                <div class="grid-two">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Category breakdown</h2>
+                        </div>
+                        <ul class="bar-list" id="reportBars"></ul>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Income vs. expense</h2>
+                        </div>
+                        <canvas id="ieChart" width="420" height="240"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>Six-month trend</h2>
+                    </div>
+                    <canvas id="trendChart" width="900" height="260"></canvas>
+                </div>
+            </section>
+
+            <section class="view" id="view-settings">
+                <header class="view-head">
+                    <div>
+                        <span class="eyebrow">Preferences</span>
+                        <h1>Settings</h1>
+                        <p class="sub">Tune XpFlow to how you keep your books.</p>
+                    </div>
+                </header>
+
+                <div class="settings-shell">
+                    <nav class="settings-tabs" aria-label="Settings sections">
+                        <button class="settings-tab is-active" data-settings-tab="profile" type="button">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="6.8" r="3.2" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M3.5 17c1.2-3.6 4.2-5.4 6.5-5.4s5.3 1.8 6.5 5.4" stroke="currentColor"
+                                    stroke-width="1.6" stroke-linecap="round" />
+                            </svg>
+                            <span>Profile</span>
+                        </button>
+                        <button class="settings-tab" data-settings-tab="general" type="button">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="2.6" stroke="currentColor" stroke-width="1.6" />
+                                <path
+                                    d="M10 2.8v2M10 15.2v2M17.2 10h-2M4.8 10h-2M15.1 4.9l-1.4 1.4M6.3 13.7l-1.4 1.4M15.1 15.1l-1.4-1.4M6.3 6.3L4.9 4.9"
+                                    stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                            </svg>
+                            <span>General</span>
+                        </button>
+                        <button class="settings-tab" data-settings-tab="data" type="button">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <ellipse cx="10" cy="5" rx="6.2" ry="2.4" stroke="currentColor" stroke-width="1.6" />
+                                <path d="M3.8 5v10c0 1.3 2.8 2.4 6.2 2.4s6.2-1.1 6.2-2.4V5" stroke="currentColor"
+                                    stroke-width="1.6" />
+                                <path d="M3.8 10c0 1.3 2.8 2.4 6.2 2.4s6.2-1.1 6.2-2.4" stroke="currentColor"
+                                    stroke-width="1.6" />
+                            </svg>
+                            <span>Data control</span>
+                        </button>
+                        <button class="settings-tab" data-settings-tab="privacy" type="button">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <path d="M10 2.8 16.2 5v5c0 4-2.6 6.6-6.2 8.2C6.4 16.6 3.8 14 3.8 10V5L10 2.8Z"
+                                    stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                                <path d="M7.6 10.2l1.8 1.8 3.2-3.6" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <span>Privacy</span>
+                        </button>
+                        <button class="settings-tab" data-settings-tab="notifications" type="button">
+                            <svg viewBox="0 0 20 20" fill="none">
+                                <path
+                                    d="M6 8.4c0-2.6 1.6-4.6 4-4.6s4 2 4 4.6c0 3.4 1.2 4.6 1.6 5.2H4.4C4.8 13 6 11.8 6 8.4Z"
+                                    stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+                                <path d="M8.3 16.2a1.8 1.8 0 0 0 3.4 0" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>Notifications</span>
+                        </button>
+                    </nav>
+
+                    <div class="settings-content">
+
+                        <div class="settings-pane is-active" id="settings-profile" data-settings-pane="profile">
+                            <div class="panel">
+                                <h2>Profile</h2>
+                                <p class="panel-desc">Your identity within XpFlow — stored only in this browser.</p>
+
+                                <div class="profile-avatar-row">
+                                    <div class="profile-avatar" id="profileAvatarPreview">
+                                        <span id="profileAvatarInitial">X</span>
+                                    </div>
+                                    <div class="profile-avatar-actions">
+                                        <label class="btn btn-ghost" for="profileAvatarInput">Change photo</label>
+                                        <input type="file" id="profileAvatarInput" accept="image/*" hidden>
+                                        <button class="btn btn-ghost" id="profileAvatarRemove"
+                                            type="button">Remove</button>
+                                    </div>
+                                </div>
+
+                                <form id="profileForm" class="settings-form" novalidate>
+                                    <div class="field-row">
+                                        <label for="profileName">Full name</label>
+                                        <input id="profileName" placeholder="e.g. Aarav Sharma" maxlength="40">
+                                    </div>
+                                    <div class="field-row">
+                                        <label for="profileNickname">What should XpFlow call you?</label>
+                                        <input id="profileNickname" placeholder="e.g. Aarav" maxlength="24">
+                                    </div>
+                                    <div class="field-row-split">
+                                        <div class="field-row">
+                                            <label for="profileMobile">Mobile number</label>
+                                            <input id="profileMobile" type="tel" placeholder="+91 90000 00000"
+                                                maxlength="20">
+                                        </div>
+                                        <div class="field-row">
+                                            <label for="profileEmail">Email ID</label>
+                                            <input id="profileEmail" type="email" placeholder="you@example.com"
+                                                maxlength="60">
+                                        </div>
+                                    </div>
+                                    <div class="modal-actions settings-form-actions">
+                                        <button type="submit" class="btn btn-primary">Save profile</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="settings-pane" id="settings-general" data-settings-pane="general">
+                            <div class="panel">
+                                <h2>Currency</h2>
+                                <p class="panel-desc">Used across every amount in the app.</p>
+                                <select id="currencySelect">
+                                    <option value="₹">₹ Indian Rupee (INR)</option>
+                                    <option value="$">$ US Dollar (USD)</option>
+                                    <option value="€">€ Euro (EUR)</option>
+                                    <option value="£">£ British Pound (GBP)</option>
+                                </select>
+                            </div>
+
+                            <div class="panel">
+                                <h2>Accent color</h2>
+                                <p class="panel-desc">Pick the highlight tone used across buttons, badges and charts.
+                                </p>
+                                <div class="swatch-row" id="accentSwatches">
+                                    <button class="swatch" data-accent="#92661F" style="--sw:#92661F"
+                                        title="Ledger gold" type="button"></button>
+                                    <button class="swatch" data-accent="#6B4226" style="--sw:#6B4226" title="Umber"
+                                        type="button"></button>
+                                    <button class="swatch" data-accent="#8A3A2A" style="--sw:#8A3A2A" title="Rust"
+                                        type="button"></button>
+                                    <button class="swatch" data-accent="#4A6B4E" style="--sw:#4A6B4E" title="Moss"
+                                        type="button"></button>
+                                    <button class="swatch" data-accent="#2F4A6B" style="--sw:#2F4A6B" title="Ink blue"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <h2>Number format</h2>
+                                <p class="panel-desc">Choose whether amounts show paise/cents across the app.</p>
+                                <label class="switch-row">
+                                    <span>Show decimals <span class="switch-hint">e.g. ₹1,250.00</span></span>
+                                    <span class="switch"><input type="checkbox" id="prefDecimals" checked></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-pane" id="settings-data" data-settings-pane="data">
+                            <div class="panel">
+                                <h2>Your data</h2>
+                                <p class="panel-desc">Everything lives only in this browser's storage — nothing is
+                                    sent anywhere.</p>
+                                <ul class="data-summary" id="dataSummary"></ul>
+                                <div class="settings-actions">
+                                    <button class="btn btn-ghost" id="exportBtn" type="button">Export as JSON</button>
+                                    <label class="btn btn-ghost" for="importInput">Import JSON</label>
+                                    <input type="file" id="importInput" accept="application/json" hidden>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <h2>Transaction history</h2>
+                                <p class="panel-desc">Remove every ledger entry but keep your accounts connected.</p>
+                                <div class="settings-actions">
+                                    <button class="btn btn-danger" id="clearTxBtn" type="button">Clear transaction
+                                        history</button>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <h2>Everything</h2>
+                                <p class="panel-desc">Wipe accounts, transactions, profile and preferences from this
+                                    browser. This can't be undone.</p>
+                                <div class="settings-actions">
+                                    <button class="btn btn-danger" id="clearBtn" type="button">Clear all data</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-pane" id="settings-privacy" data-settings-pane="privacy">
+                            <div class="panel">
+                                <h2>Login accounts</h2>
+                                <p class="panel-desc">Every provider connected to XpFlow on this device.</p>
+                                <ul class="login-account-list" id="loginAccountList"></ul>
+                                <p class="empty-row" id="loginAccountEmpty" hidden>No accounts connected yet. Use
+                                    "Connect account" from the sidebar to add one.</p>
+                                <div class="settings-actions">
+                                    <button class="btn btn-danger" id="logoutAllBtn" type="button">Log out from every
+                                        account</button>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <h2>About account connections</h2>
+                                <p class="panel-desc">
+                                    XpFlow runs entirely as static HTML, CSS and JavaScript, so it never asks for your
+                                    real net-banking username or password — that kind of link needs a licensed
+                                    backend (like a Plaid, TrueLayer or Yodlee integration) to talk to your bank
+                                    securely. Instead, "Connect account" here adds an account you describe, and "Sync"
+                                    simulates new transactions arriving so you can see how the ledger behaves. Swap
+                                    the simulated sync in <code>script.js</code> for a real API call once you have a
+                                    backend, and the rest of the app keeps working as-is.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="settings-pane" id="settings-notifications" data-settings-pane="notifications">
+                            <div class="panel">
+                                <h2>Notifications</h2>
+                                <p class="panel-desc">Choose what XpFlow should notify you about. Preferences are
+                                    stored on this device only.</p>
+                                <ul class="notif-list" id="notifList"></ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-account" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+            <div class="modal-head">
+                <h2 id="accountModalTitle">Connect an account</h2>
+                <button class="icon-btn" data-close-modal type="button" aria-label="Close">✕</button>
+            </div>
+
+            <form id="accountForm" class="modal-body" novalidate>
+                <input type="hidden" id="accountId">
+                <div class="field-row">
+                    <label for="accountNickname">Nickname</label>
+                    <input id="accountNickname" required placeholder="e.g. Everyday Savings" maxlength="40">
+                </div>
+                <div class="field-row">
+                    <label for="accountInstitution">Institution name</label>
+                    <input id="accountInstitution" required placeholder="e.g. Union Bank" maxlength="40">
+                </div>
+                <div class="field-row-split">
+                    <div class="field-row">
+                        <label for="accountType">Account type</label>
+                        <select id="accountType">
+                            <option value="savings">Savings</option>
+                            <option value="current">Current</option>
+                            <option value="credit">Credit card</option>
+                            <option value="cash">Cash</option>
+                            <option value="wallet">Wallet</option>
+                            <option value="fd">Fixed deposit</option>
+                        </select>
+                    </div>
+                    <div class="field-row">
+                        <label for="accountLast4">Last 4 digits <span class="optional">(optional)</span></label>
+                        <input id="accountLast4" maxlength="4" inputmode="numeric" placeholder="0000">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <label for="accountBalance">Opening balance</label>
+                    <input id="accountBalance" type="number" step="0.01" required placeholder="0.00">
+                </div>
+                <p class="form-note">No banking credentials are ever requested — this only stores what you type, in this
+                    browser.</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="accountSubmitBtn">Connect account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-transaction" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="txModalTitle">
+            <div class="modal-head">
+                <h2 id="txModalTitle">Add entry</h2>
+                <button class="icon-btn" data-close-modal type="button" aria-label="Close">✕</button>
+            </div>
+
+            <form id="transactionForm" class="modal-body" novalidate>
+                <input type="hidden" id="txId">
+                <div class="type-toggle" role="radiogroup" aria-label="Entry type">
+                    <button type="button" class="type-opt is-active" data-type="expense">Expense</button>
+                    <button type="button" class="type-opt" data-type="income">Income</button>
+                </div>
+
+                <div class="field-row">
+                    <label for="txAmount">Amount</label>
+                    <input id="txAmount" type="number" step="0.01" min="0.01" required placeholder="0.00">
+                </div>
+                <div class="field-row-split">
+                    <div class="field-row">
+                        <label for="txDate">Date</label>
+                        <input id="txDate" type="date" required>
+                    </div>
+                    <div class="field-row">
+                        <label for="txAccount">Account</label>
+                        <select id="txAccount" required></select>
+                    </div>
+                </div>
+                <div class="field-row">
+                    <label for="txCategory">Category</label>
+                    <select id="txCategory" required></select>
+                </div>
+                <div class="field-row">
+                    <label for="txNote">Note</label>
+                    <input id="txNote" maxlength="60" placeholder="e.g. Groceries at the market">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-confirm" hidden>
+        <div class="modal modal-small" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle">
+            <div class="modal-head">
+                <h2 id="confirmTitle">Are you sure?</h2>
+                <button class="icon-btn" data-close-modal type="button" aria-label="Close">✕</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">This can't be undone.</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmActionBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-password" hidden>
+        <div class="modal modal-small" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle">
+            <div class="modal-head">
+                <h2 id="passwordModalTitle">Set account password</h2>
+                <button class="icon-btn" data-close-modal type="button" aria-label="Close">✕</button>
+            </div>
+            <form id="passwordForm" class="modal-body" novalidate>
+                <input type="hidden" id="passwordAccountId">
+                <p class="form-note" id="passwordAccountLabel">Adding a password for this account.</p>
+                <div class="field-row">
+                    <label for="passwordNew">New password</label>
+                    <input id="passwordNew" type="password" minlength="4" required placeholder="At least 4 characters">
+                </div>
+                <div class="field-row">
+                    <label for="passwordConfirm">Confirm password</label>
+                    <input id="passwordConfirm" type="password" minlength="4" required placeholder="Re-enter password">
+                </div>
+                <p class="form-note">Stored only in this browser, for this demo — never sent anywhere.</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="account-login-modal" hidden>
+        <div class="modal-content account-modal">
+            <div class="modal-header">
+                <h2>Login to XpFlow</h2>
+                <button class="close-btn" id="close-account-modal">&times;</button>
+            </div>
+            <p class="modal-subtitle">Choose how you'd like to sign in</p>
+
+            <div class="provider-grid">
+                <button class="provider-btn" data-provider="Google Pay">
+                    <div class="provider-icon gpay">GPay</div>
+                    <span>Google Pay</span>
+                </button>
+
+                <button class="provider-btn" data-provider="Paytm">
+                    <div class="provider-icon paytm">Paytm</div>
+                    <span>Paytm</span>
+                </button>
+
+                <button class="provider-btn" data-provider="PhonePe">
+                    <div class="provider-icon phonepe">PhonePe</div>
+                    <span>PhonePe</span>
+                </button>
+
+                <button class="provider-btn" data-provider="Bank Account">
+                    <div class="provider-icon bank">🏦</div>
+                    <span>Bank Account</span>
+                </button>
+
+                <button class="provider-btn" data-provider="Gmail">
+                    <div class="provider-icon gmail">@</div>
+                    <span>Gmail</span>
+                </button>
+
+                <button class="provider-btn" data-provider="UPI">
+                    <div class="provider-icon upi">UPI</div>
+                    <span>UPI</span>
+                </button>
+
+                <button class="provider-btn" data-provider="PayPal">
+                    <div class="provider-icon paypal">PP</div>
+                    <span>PayPal</span>
+                </button>
+            </div>
+
+            <form id="connect-provider-form" class="connect-form hidden">
+                <div class="selected-provider-badge" id="selected-provider-title">Login</div>
+
+                <div class="field-row">
+                    <label for="provider-userid" id="provider-userid-label">UPI ID or Mobile Number</label>
+                    <input type="text" id="provider-userid" placeholder="e.g., 9876543210@paytm / name@okaxis"
+                        required />
+                </div>
+
+                <div class="field-row">
+                    <label for="provider-password">Password</label>
+                    <input type="password" id="provider-password" minlength="4" placeholder="At least 4 characters"
+                        required />
+                </div>
+
+                <p class="form-note">This is a demo login — nothing is sent anywhere, it's only stored in this
+                    browser.</p>
+
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
